@@ -11,5 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-03-12 23:59:59
 */
 public interface UserService extends IService<User> {
-    RegisterResponse register(RegisterRequest registerRequest);
+    RegisterResponse register(RegisterRequest request);
 }
