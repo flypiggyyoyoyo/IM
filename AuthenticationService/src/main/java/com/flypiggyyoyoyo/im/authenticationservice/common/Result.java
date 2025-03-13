@@ -25,4 +25,16 @@ public class Result<T> {
         return result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .setMsg(msg);
     }
+
+    public static <T> Result<T> ServerError(String msg){
+        Result<T> result = new Result<>();
+        return result.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .setMsg(msg);
+    }
+
+    public static <T> Result<T> userError(int code,String msg) {
+        Result<T> r = new Result<>();
+
+        return r.setCode(code).setMsg(msg);
+    }
 }

@@ -30,6 +30,11 @@ spring:
       # 设置连接池的池化管理名称
       pool-name: HikariCP
 
+  redis:
+    database: 0
+    host: localhost
+    port: 59000
+    password: e65K4t8w2
 
 # 打印 sql
 mybatis-plus:

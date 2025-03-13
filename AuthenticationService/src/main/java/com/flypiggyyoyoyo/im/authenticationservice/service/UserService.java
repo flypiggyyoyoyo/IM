@@ -1,5 +1,7 @@
 package com.flypiggyyoyoyo.im.authenticationservice.service;
 
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-03-12 23:59:59
 */
 public interface UserService extends IService<User> {
-    
+    RegisterResponse register(RegisterRequest registerRequest);
 }
