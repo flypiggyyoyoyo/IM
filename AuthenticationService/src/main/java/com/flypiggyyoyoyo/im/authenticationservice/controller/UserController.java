@@ -1,0 +1,28 @@
+package com.flypiggyyoyoyo.im.authenticationservice.controller;
+
+
+import com.flypiggyyoyoyo.im.authenticationservice.common.Result;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
+import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@Slf4j
+@RestController
+@RequestMapping("/api/v1/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public Result<RegisterResponse> register(@RequestBody RegisterRequest request) {
+        RegisterResponse response = userService.register(request);
+        return Result.OK(response);
+    }
+}
