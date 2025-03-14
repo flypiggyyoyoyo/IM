@@ -1,6 +1,8 @@
 package com.flypiggyyoyoyo.im.authenticationservice.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
@@ -24,4 +26,5 @@ public interface UserService extends IService<User> {
 
     RegisterResponse register(RegisterRequest request);
     LoginResponse login(LoginRequest requset);
+    LoginCodeResponse loginCode(LoginCodeRequest requset);
 }

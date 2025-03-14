@@ -2,6 +2,8 @@ package com.flypiggyyoyoyo.im.authenticationservice.controller;
 
 
 import com.flypiggyyoyoyo.im.authenticationservice.common.Result;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
@@ -31,6 +33,12 @@ public class UserController {
     @PostMapping("/login")
     public Result<LoginResponse> login(@RequestBody LoginRequest request) {
         LoginResponse response = userService.login(request);
+        return Result.OK(response);
+    }
+
+    @PostMapping("/loginCode")
+    public Result<LoginCodeResponse> loginCode(@RequestBody LoginCodeRequest request) {
+        LoginCodeResponse response = userService.loginCode(request);
         return Result.OK(response);
     }
 }

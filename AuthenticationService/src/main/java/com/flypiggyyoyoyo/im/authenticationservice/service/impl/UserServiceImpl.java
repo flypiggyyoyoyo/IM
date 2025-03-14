@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flypiggyyoyoyo.im.authenticationservice.constants.user.ErrorEnum;
 import com.flypiggyyoyoyo.im.authenticationservice.constants.user.registerConstant;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.LoginCode.LoginCodeResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
@@ -97,7 +99,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         //签发token
         String token = JwtUtil.generate(String.valueOf(user.getUserId()));
-        response.setSignature(token);
+        response.setToken(token);
+
+        return response;
+    }
+
+    @Override
+    public LoginCodeResponse loginCode(LoginCodeRequest request) {
+
+        //验证码
+        String redisCode = redisTemplate.opsForValue().get(registerConstant.REGISTER_CODE+request.getPhone());
+        if (redisCode == null|| !redisCode.equals(request.getCode())){
+            throw new CodeException(ErrorEnum.CODE_ERROR);
+        }
+
+        //通过手机号查询信息
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone",request.getPhone());
+        User user = this.getOne(queryWrapper,true);
+
+        LoginCodeResponse response = new LoginCodeResponse();
+        BeanUtils.copyProperties(user, response);
+
+        //签发token
+        String token = JwtUtil.generate(String.valueOf(user.getUserId()));
+        response.setToken(token);
 
         return response;
     }
