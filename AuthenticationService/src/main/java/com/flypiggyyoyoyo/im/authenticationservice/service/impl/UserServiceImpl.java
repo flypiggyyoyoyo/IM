@@ -11,6 +11,8 @@ import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.CodeException;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.DatabaseException;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.UserException;
@@ -124,6 +126,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //签发token
         String token = JwtUtil.generate(String.valueOf(user.getUserId()));
         response.setToken(token);
+
+        return response;
+    }
+
+    @Override
+    public UpdateAvatarResponse updateAvatar(String id, UpdateAvatarRequest request) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();//创建了一个空的 QueryWrapper 对象，后续可以向这个对象中添加各种查询条件
+        queryWrapper.eq("user_id",Long.valueOf(id));//添加"="查询
+        User user = this.getOnly(queryWrapper,true);
+        if(user == null) {
+            throw new UserException(ErrorEnum.NO_USER_ERROR);
+        }
+
+        user.setAvatar(request.avatarUrl);//预设
+
+        boolean isUpdate = this.updateById(user);//更新数据库中与 user 对象主键相匹配的那条记录
+        if(!isUpdate) {
+            throw new UserException(ErrorEnum.UPDATE_AVATAR_ERROR);
+        }
+        UpdateAvatarResponse response = new UpdateAvatarResponse();
+        BeanUtils.copyProperties(user, response);
 
         return response;
     }

@@ -8,6 +8,8 @@ import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,12 @@ public class UserController {
     @PostMapping("/loginCode")
     public Result<LoginCodeResponse> loginCode(@Valid @RequestBody LoginCodeRequest request) {
         LoginCodeResponse response = userService.loginCode(request);
+        return Result.OK(response);
+    }
+
+    @PostMapping("/avatar")
+    public Result<UpdateAvatarResponse> updateAvatar(@Valid @RequestBody UpdateAvatarRequest request) {
+        UpdateAvatarResponse response = userService.updateAvatar(request);
         return Result.OK(response);
     }
 }

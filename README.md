@@ -2,7 +2,7 @@
 An instant messaging project in Java version.
 
 ## TODO
-- [ ] Authentication
+- [x] Authentication
 - [ ] GateWay
 - 
 

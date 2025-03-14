@@ -7,6 +7,8 @@ import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -27,4 +29,5 @@ public interface UserService extends IService<User> {
     RegisterResponse register(RegisterRequest request);
     LoginResponse login(LoginRequest requset);
     LoginCodeResponse loginCode(LoginCodeRequest requset);
+    UpdateAvatarResponse updateAvatar(String id, UpdateAvatarRequest request);
 }
