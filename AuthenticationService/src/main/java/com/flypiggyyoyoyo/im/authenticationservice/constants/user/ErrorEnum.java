@@ -12,6 +12,9 @@ public enum ErrorEnum {
     Login_ERROR(40003,"登录失败，用户名或密码错误"),
     NO_USER_ERROR(40004,"用户不存在"),
 
+    SIGNATURE_VERIFICATION_FAILED(40101, "签名验证失败"),
+    ILLEGAL_SOURCE(40301, "非法请求来源"),
+
     UPDATE_AVATAR_ERROR(50011,"更新头像失败");
 
     private final int code;
