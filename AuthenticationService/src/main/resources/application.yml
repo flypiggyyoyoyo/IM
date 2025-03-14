@@ -35,8 +35,24 @@ spring:
     host: localhost
     port: 59000
     password: e65K4t8w2
+    # 配置 redis 连接池
+    lettuce:
+      pool:
+        # 链接池中最小的空闲链接 默认为0
+        min-idle: 4
+        # 链接池中最大的空闲连接 默认为 8
+        max-idle: 8
+        #连接池中最大数据库链接数 默认为8
+        max-active: 8
+        #连接池最大阻塞等待时间 负值表示没有限制
+        max-wait: -1ms
 
 # 打印 sql
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+minio:
+  url: http://localhost:9000
+  access-key: minioadmin
+  secret-key: minioadmin

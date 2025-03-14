@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/user")
@@ -25,19 +27,19 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public Result<RegisterResponse> register(@RequestBody RegisterRequest request) {
+    public Result<RegisterResponse> register(@Valid @RequestBody RegisterRequest request) {
         RegisterResponse response = userService.register(request);
         return Result.OK(response);
     }
 
     @PostMapping("/login")
-    public Result<LoginResponse> login(@RequestBody LoginRequest request) {
+    public Result<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         LoginResponse response = userService.login(request);
         return Result.OK(response);
     }
 
     @PostMapping("/loginCode")
-    public Result<LoginCodeResponse> loginCode(@RequestBody LoginCodeRequest request) {
+    public Result<LoginCodeResponse> loginCode(@Valid @RequestBody LoginCodeRequest request) {
         LoginCodeResponse response = userService.loginCode(request);
         return Result.OK(response);
     }

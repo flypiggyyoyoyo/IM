@@ -17,27 +17,6 @@ public class SMSUtil {
         return new com.aliyun.dysmsapi20170525.Client(config);
     }
 
-    //    public void sendServiceSms(String phoneNumber, String code) throws Exception {
-//        com.aliyun.dysmsapi20170525.Client client = SMSUtil.createClient();
-//        com.aliyun.dysmsapi20170525.models.SendSmsRequest sendSmsRequest = new com.aliyun.dysmsapi20170525.models.SendSmsRequest()
-//                .setSignName(ConfigEnum.SMS_SIG_NAME.getValue())
-//                .setTemplateCode(ConfigEnum.SMS_TEMPLATE_CODE.getValue())
-//                .setPhoneNumbers(phoneNumber)
-//                .setTemplateParam("{\"code\":\"" + code + "\"}");
-//        com.aliyun.teautil.models.RuntimeOptions runtime = new com.aliyun.teautil.models.RuntimeOptions();
-//        try {
-//            System.out.println(phoneNumber+' '+code);
-//            SendSmsResponse response = client.sendSmsWithOptions(sendSmsRequest, runtime);
-//            log.info("短信发送成功，response: {}", response);
-//        } catch (TeaException error) {
-//            com.aliyun.teautil.Common.assertAsString(error.message);
-//            log.error("短信发送失败，error: {}", error.message);
-//        } catch (Exception _error) {
-//            TeaException error = new TeaException(_error.getMessage(), _error);
-//            com.aliyun.teautil.Common.assertAsString(error.message);
-//            log.error("短信发送失败，error: {}", error.message);
-//        }
-//    }
     public void sendServiceSms(String phoneNumber, String code) throws Exception {
         com.aliyun.dysmsapi20170525.Client client = SMSUtil.createClient();
         com.aliyun.dysmsapi20170525.models.SendSmsRequest sendSmsRequest = new com.aliyun.dysmsapi20170525.models.SendSmsRequest()
