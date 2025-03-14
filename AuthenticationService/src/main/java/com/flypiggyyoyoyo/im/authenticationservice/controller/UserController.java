@@ -11,12 +11,10 @@ import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRe
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.UpdateAvatarResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
+import com.flypiggyyoyoyo.im.authenticationservice.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -46,9 +44,12 @@ public class UserController {
         return Result.OK(response);
     }
 
-    @PostMapping("/avatar")
-    public Result<UpdateAvatarResponse> updateAvatar(@Valid @RequestBody UpdateAvatarRequest request) {
-        UpdateAvatarResponse response = userService.updateAvatar(request);
+    @PatchMapping("/avatar")
+    public Result<UpdateAvatarResponse> updateAvatar(@Valid @RequestBody UpdateAvatarRequest request,
+                                                     @RequestHeader String Authorization) throws Exception {
+        String id = JwtUtil.parse(Authorization).getSubject();
+        UpdateAvatarResponse response = userService.updateAvatar(id, request);
+
         return Result.OK(response);
     }
 }
