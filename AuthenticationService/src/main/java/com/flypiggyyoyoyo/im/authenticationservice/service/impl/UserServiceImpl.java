@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.flypiggyyoyoyo.im.authenticationservice.constants.user.ErrorEnum;
 import com.flypiggyyoyoyo.im.authenticationservice.constants.user.registerConstant;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.CodeException;
@@ -13,7 +15,9 @@ import com.flypiggyyoyoyo.im.authenticationservice.exception.UserException;
 import com.flypiggyyoyoyo.im.authenticationservice.model.User;
 import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
 import com.flypiggyyoyoyo.im.authenticationservice.mapper.UserMapper;
+import com.flypiggyyoyoyo.im.authenticationservice.utils.JwtUtil;
 import com.flypiggyyoyoyo.im.authenticationservice.utils.NickNameGeneratorUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -72,6 +76,30 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
 
         return new RegisterResponse().setPhone(phone);
+    }
+
+    @Override
+    public LoginResponse login(LoginRequest request) {
+
+        // 创建一个针对 User 实体类的 QueryWrapper 对象，QueryWrapper 是 MyBatis-Plus 提供的用于构建 SQL 查询条件的工具类
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+
+        // 向 QueryWrapper 中添加一个等值查询条件，即查询 User 表中 phone 字段等于 request 对象中 getPhone() 方法返回值的记录
+        //("字段名","要匹配的值")
+        queryWrapper.eq("phone", request.getPhone());
+
+        //取第一个一样的
+        User user = this.getOnly(queryWrapper,true);
+
+        //构造返回体
+        LoginResponse response = new LoginResponse();
+        BeanUtils.copyProperties(user, response);
+
+        //签发token
+        String token = JwtUtil.generate(String.valueOf(user.getUserId()));
+        response.setSignature(token);
+
+        return response;
     }
 
     private boolean isRegister(String phone) {

@@ -2,6 +2,8 @@ package com.flypiggyyoyoyo.im.authenticationservice.controller;
 
 
 import com.flypiggyyoyoyo.im.authenticationservice.common.Result;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginRequest;
+import com.flypiggyyoyoyo.im.authenticationservice.data.user.login.LoginResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterRequest;
 import com.flypiggyyoyoyo.im.authenticationservice.data.user.register.RegisterResponse;
 import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
@@ -23,6 +25,12 @@ public class UserController {
     @PostMapping("/register")
     public Result<RegisterResponse> register(@RequestBody RegisterRequest request) {
         RegisterResponse response = userService.register(request);
+        return Result.OK(response);
+    }
+
+    @PostMapping("/login")
+    public Result<LoginResponse> login(@RequestBody LoginRequest request) {
+        LoginResponse response = userService.login(request);
         return Result.OK(response);
     }
 }
