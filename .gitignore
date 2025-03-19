@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 AuthenticationService/src/main/java/com/flypiggyyoyoyo/im/authenticationservice/constants/config/ConfigEnum.java
+RealTimeCommunicationService/src/main/java/com/flypiggyyoyoyo/im/realtimecommunicationservice/constants/ConfigEnum.java

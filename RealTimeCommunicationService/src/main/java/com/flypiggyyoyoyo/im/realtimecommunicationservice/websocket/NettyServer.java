@@ -17,8 +17,10 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.util.NettyRuntime;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.annotation.PostConstruct;
 
@@ -28,6 +30,9 @@ public class NettyServer {
 
     @Value("${netty.port}")
     private int port;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 
@@ -55,7 +60,7 @@ public class NettyServer {
                         pipeline.addLast(new ChunkedWriteHandler());
                         pipeline.addLast(new HttpObjectAggregator(8192));
                         pipeline.addLast(new WebSocketServerProtocolHandler("/"));
-                        pipeline.addLast(new MessageInboundHandler());
+                        pipeline.addLast(new MessageInboundHandler(redisTemplate));
                     }
                 });
 
