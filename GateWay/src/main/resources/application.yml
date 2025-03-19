@@ -63,3 +63,15 @@ spring:
         #请求被转发到AuthenticationService服务
         #当响应返回时，网关添加指定的响应头
         #响应发送回客户端
+
+        # 实时通信服务
+        - id: RealTimeCommunicationService
+          uri: lb://RealTimeCommunicationService
+          predicates:
+            - Path=/api/v1/message/**
+        # Netty 长链接服务
+        - id: NettyService
+          # uri: ws://127.0.0.1:9000
+          uri: lb:ws://NettyService
+          predicates:
+            - Path=/api/v1/netty
