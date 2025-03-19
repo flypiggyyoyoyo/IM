@@ -4,7 +4,8 @@ An instant messaging project in Java version.
 ## TODO
 - [x] Authentication
 - [x] GateWay
-- [ ] Websocket
+- [x] Websocket
+- [ ] Message
 
 **optimize**
 - [ ] Add return information to the frontend
