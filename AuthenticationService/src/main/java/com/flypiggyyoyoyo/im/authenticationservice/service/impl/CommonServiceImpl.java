@@ -36,7 +36,7 @@ public class CommonServiceImpl extends ServiceImpl<UserMapper, User>
         String code = RandomNumUtil.getRandomNum();
 
         //存入redis
-        redisTemplate.opsForValue().set(registerConstant.REGISTER_CODE + phone, code,5, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(registerConstant.REGISTER_CODE + phone, code,5, TimeUnit.MINUTES);
 
         new SMSUtil().sendServiceSms(phone,code);
         return new SMSResponse().setPhone(phone);
