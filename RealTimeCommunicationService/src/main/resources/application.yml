@@ -28,4 +28,4 @@ server:
   port: 8083
 netty:
   name: NettyService
-  port: 9090
+  port: 9091

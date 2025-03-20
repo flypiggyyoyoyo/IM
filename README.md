@@ -12,3 +12,6 @@ An instant messaging project in Java version.
 - [ ] Interceptor: add check-logic in JwtHandler 
 - [ ] sendSms throws exception
 - [ ] check for other exception throwing logic 
+
+**issue**
+- [ ] The verification code sending function cannot save the verification code to Redis
