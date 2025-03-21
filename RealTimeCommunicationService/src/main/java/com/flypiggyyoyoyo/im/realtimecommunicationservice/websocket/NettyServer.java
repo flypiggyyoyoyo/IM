@@ -88,7 +88,7 @@ public class NettyServer {
                         pipeline.addLast(new ChunkedWriteHandler());
                         pipeline.addLast(new HttpObjectAggregator(8192));
                         pipeline.addLast(new WebSocketTokenAuthHeader());
-                        pipeline.addLast(new WebSocketServerProtocolHandler("/"));
+                        pipeline.addLast(new WebSocketServerProtocolHandler("/api/v1/netty"));
                         pipeline.addLast(new MessageInboundHandler(redisTemplate));
                     }
                 });

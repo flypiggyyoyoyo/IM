@@ -15,4 +15,4 @@ An instant messaging project in Java version.
 
 **issue**
 - [x] The verification code sending function cannot save the verification code to Redis
-- [ ] netty-userId can not be stored by redis
+- [x] netty-userId can not be stored by redis

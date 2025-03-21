@@ -50,7 +50,7 @@ public class JwtUtil {
                 // SignatureAlgorithm.HS512 表示使用 HMAC-SHA512 算法进行签名
                 // ConfigEnum.TOKEN_SECRET_KEY.getText() 从枚举类 ConfigEnum 中获取签名密钥
                 // 签名密钥是一个保密的字符串，用于对 JWT 进行签名，确保令牌的完整性和真实性
-                .signWith(SignatureAlgorithm.HS512, ConfigEnum.TOKEN_SECRET_KEY.getText())
+                .signWith(SignatureAlgorithm.HS512, ConfigEnum.TOKEN_SECRET_KEY.getValue())
                 // 调用 compact() 方法将 JWT 构建器中的信息压缩成一个紧凑的字符串，即最终的 JWT 令牌
                 .compact();
     }
