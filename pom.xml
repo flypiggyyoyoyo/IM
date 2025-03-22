@@ -13,5 +13,6 @@
         <module>AuthenticationService</module>
         <module>GateWay</module>
         <module>RealTimeCommunicationService</module>
+        <module>MessageService</module>
     </modules>
 </project>
