@@ -97,7 +97,7 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message>
     public SendMsgResponse sendMessage(SendMsgRequest request) {
         // 1. 校验用户是否真实存在
         validateSender(request.getSendUserId());
-        // 2. 判断单聊还是群聊，群聊去获取用户名单，并且校验好友关系
+        // 2. 判断单聊还是群聊，群聊去获取用户名单，然后校验好友关系
         List<Long> receiveUserIds = getReceiveUserIds(request);
         validateReceiveUserIds(receiveUserIds);
         // 3. 构建消息
@@ -125,9 +125,12 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message>
 
     private List<Long> getReceiveUserIds(SendMsgRequest sendMsgRequest) {
         List<Long> receiveUserIds = new ArrayList<>();
+
+        //获取聊天通道
         int sessionType = sendMsgRequest.getSessionType();
 
         if (sessionType == SessionType.SINGLE.getValue()) {
+            //如果是单聊
             Long receiveUserId = sendMsgRequest.getReceiveUserId();
             receiveUserIds.add(receiveUserId);
             validateSingleSession(sendMsgRequest.getSendUserId(), receiveUserId);

@@ -5,7 +5,8 @@ An instant messaging project in Java version.
 - [x] Authentication
 - [x] GateWay
 - [x] Websocket
-- [ ] Message
+- [x] Message
+- [ ] Red envelope 
 
 **optimize**
 - [ ] Add return information to the frontend
@@ -16,3 +17,4 @@ An instant messaging project in Java version.
 **issue**
 - [x] The verification code sending function cannot save the verification code to Redis
 - [x] netty-userId can not be stored by redis
+- [ ] send text-message to friend secceed, but the body of the response is empty
