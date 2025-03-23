@@ -75,3 +75,13 @@ spring:
           uri: lb:ws://NettyService
           predicates:
             - Path=/api/v1/netty
+
+        # 消息转发服务
+        - id: MessagingService
+
+          uri: lb://MessagingService
+          predicates:
+            - Path=/api/v1/**
+          filters:
+            - AddRequestHeader=X-Request-Source, InfiniteChat-GateWay
+            - AddResponseHeader=X-Response-Source, InfiniteChat-GateWay
