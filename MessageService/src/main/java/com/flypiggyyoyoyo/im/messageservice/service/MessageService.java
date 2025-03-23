@@ -1,5 +1,7 @@
 package com.flypiggyyoyoyo.im.messageservice.service;
 
+import com.flypiggyyoyoyo.im.messageservice.data.sendMsg.SendMsgRequest;
+import com.flypiggyyoyoyo.im.messageservice.data.sendMsg.SendMsgResponse;
 import com.flypiggyyoyoyo.im.messageservice.model.Message;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-03-22 21:13:40
 */
 public interface MessageService extends IService<Message> {
-
+    SendMsgResponse sendMessage(SendMsgRequest request);
 }
