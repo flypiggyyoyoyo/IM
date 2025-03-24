@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flypiggyyoyoyo.im.messageservice.mapper.RedPacketMapper">
+
+    <resultMap id="BaseResultMap" type="com.flypiggyyoyoyo.im.messageservice.model.RedPacket">
+            <id property="redPacketId" column="red_packet_id" />
+            <result property="senderId" column="sender_id" />
+            <result property="sessionId" column="session_id" />
+            <result property="redPacketWrapperText" column="red_packet_wrapper_text" />
+            <result property="redPacketType" column="red_packet_type" />
+            <result property="totalAmount" column="total_amount" />
+            <result property="totalCount" column="total_count" />
+            <result property="remainingAmount" column="remaining_amount" />
+            <result property="remainingCount" column="remaining_count" />
+            <result property="status" column="status" />
+            <result property="createdAt" column="created_at" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        red_packet_id,sender_id,session_id,red_packet_wrapper_text,red_packet_type,total_amount,
+        total_count,remaining_amount,remaining_count,status,created_at
+    </sql>
+</mapper>
