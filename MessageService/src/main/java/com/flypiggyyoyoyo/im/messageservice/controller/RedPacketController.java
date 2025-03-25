@@ -5,6 +5,8 @@ import com.flypiggyyoyoyo.im.messageservice.data.receiveRedPackage.ReceiveRedPac
 import com.flypiggyyoyoyo.im.messageservice.data.receiveRedPackage.ReceiveRedPacketResponse;
 import com.flypiggyyoyoyo.im.messageservice.data.sendRedPackage.SendRedPacketRequest;
 import com.flypiggyyoyoyo.im.messageservice.data.sendRedPackage.SendRedPacketResponse;
+import com.flypiggyyoyoyo.im.messageservice.mapper.RedPacketMapper;
+import com.flypiggyyoyoyo.im.messageservice.service.RedPacketReceiveService;
 import com.flypiggyyoyoyo.im.messageservice.service.RedPacketService;
 import com.flypiggyyoyoyo.im.messageservice.util.PreventDuplicateSubmit;
 import lombok.SneakyThrows;
@@ -20,6 +22,9 @@ public class RedPacketController {
 
     @Autowired
     private RedPacketService redPacketService;
+
+    @Autowired
+    private RedPacketReceiveService redPacketReceiveService;
 
     @SneakyThrows
     @PreventDuplicateSubmit // 防止重复提交
