@@ -3,6 +3,7 @@ package com.flypiggyyoyoyo.im.messageservice.model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -27,7 +28,7 @@ public class UserBalance {
     /**
      * 更新时间
      */
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     @Override
     public boolean equals(Object that) {

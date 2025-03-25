@@ -1,6 +1,8 @@
 package com.flypiggyyoyoyo.im.messageservice.controller;
 
 import com.flypiggyyoyoyo.im.messageservice.common.Result;
+import com.flypiggyyoyoyo.im.messageservice.data.receiveRedPackage.ReceiveRedPacketRequest;
+import com.flypiggyyoyoyo.im.messageservice.data.receiveRedPackage.ReceiveRedPacketResponse;
 import com.flypiggyyoyoyo.im.messageservice.data.sendRedPackage.SendRedPacketRequest;
 import com.flypiggyyoyoyo.im.messageservice.data.sendRedPackage.SendRedPacketResponse;
 import com.flypiggyyoyoyo.im.messageservice.service.RedPacketService;
@@ -24,6 +26,14 @@ public class RedPacketController {
     @PostMapping("/send")
     public Result<SendRedPacketResponse> sendRedPacket(@RequestBody SendRedPacketRequest request) {
         SendRedPacketResponse response = redPacketService.sendRedPacket(request);
+
+        return Result.OK(response);
+    }
+
+    @SneakyThrows
+    @PostMapping("/receive")
+    public Result<ReceiveRedPacketResponse> receiveRedPacket(@RequestBody ReceiveRedPacketRequest request) {
+        ReceiveRedPacketResponse response = redPacketReceiveService.receiveRedPacket(request.getUserId(), request.getRedPacketId());
 
         return Result.OK(response);
     }
