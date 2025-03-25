@@ -6,7 +6,8 @@ An instant messaging project in Java version.
 - [x] GateWay
 - [x] Websocket
 - [x] Message
-- [ ] Red envelope 
+- [x] Red packet
+- [ ] kafka
 
 **optimize**
 - [ ] Add return information to the frontend
