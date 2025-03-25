@@ -16,7 +16,9 @@ import com.flypiggyyoyoyo.im.authenticationservice.data.user.updateAvatar.Update
 import com.flypiggyyoyoyo.im.authenticationservice.exception.CodeException;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.DatabaseException;
 import com.flypiggyyoyoyo.im.authenticationservice.exception.UserException;
+import com.flypiggyyoyoyo.im.authenticationservice.mapper.UserBalanceMapper;
 import com.flypiggyyoyoyo.im.authenticationservice.model.User;
+import com.flypiggyyoyoyo.im.authenticationservice.model.UserBalance;
 import com.flypiggyyoyoyo.im.authenticationservice.service.UserService;
 import com.flypiggyyoyoyo.im.authenticationservice.mapper.UserMapper;
 import com.flypiggyyoyoyo.im.authenticationservice.utils.JwtUtil;
@@ -26,6 +28,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @author flypiggy
@@ -38,6 +43,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    @Autowired
+    private UserBalanceMapper userBalanceMapper;
 
     @Override
     public RegisterResponse register(RegisterRequest request) {
@@ -77,6 +85,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         if(!isUserSave) {
             throw new DatabaseException("数据库异常，存储信息失败");
+        }
+
+        UserBalance userBalance = new UserBalance()
+                .setUserId(user.getUserId())
+                .setBalance(BigDecimal.valueOf(1000))
+                .setUpdatedAt(LocalDateTime.now());
+
+        int insert = userBalanceMapper.insert(userBalance);
+        if (insert <= 0){
+            throw new DatabaseException("数据库异常，创建用户账户信息错误");
         }
 
         return new RegisterResponse().setPhone(phone);
