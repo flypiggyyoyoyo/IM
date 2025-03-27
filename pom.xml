@@ -14,5 +14,6 @@
         <module>GateWay</module>
         <module>RealTimeCommunicationService</module>
         <module>MessageService</module>
+        <module>OfflineDataStoreService</module>
     </modules>
 </project>
