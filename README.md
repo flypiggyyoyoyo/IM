@@ -7,7 +7,8 @@ An instant messaging project in Java version.
 - [x] Websocket
 - [x] Message
 - [x] Red packet
-- [ ] kafka
+- [x] kafka
+- [ ] Wechat Moments
 
 **optimize**
 - [ ] Add return information to the frontend
