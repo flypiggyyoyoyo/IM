@@ -2,6 +2,7 @@ package com.flypiggyyoyoyo.im.offlinedatastoreservice.mapper;
 
 import com.flypiggyyoyoyo.im.offlinedatastoreservice.model.UserSession;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author flypiggy
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2025-03-27 21:31:53
 * @Entity com.flypiggyyoyoyo.im.offlinedatastoreservice.model.UserSession
 */
+@Mapper
 public interface UserSessionMapper extends BaseMapper<UserSession> {
 
 }

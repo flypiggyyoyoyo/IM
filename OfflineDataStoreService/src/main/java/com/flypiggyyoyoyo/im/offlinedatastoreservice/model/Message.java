@@ -1,5 +1,6 @@
 package com.flypiggyyoyoyo.im.offlinedatastoreservice.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
@@ -115,4 +116,13 @@ public class Message {
         sb.append("]");
         return sb.toString();
     }
+
+    @TableField(exist = false)
+    private RedPacket redPacket;
+
+    @TableField(exist = false)
+    private User user;
+
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 }

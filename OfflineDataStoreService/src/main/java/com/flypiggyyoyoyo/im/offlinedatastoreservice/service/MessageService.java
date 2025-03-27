@@ -1,5 +1,7 @@
 package com.flypiggyyoyoyo.im.offlinedatastoreservice.service;
 
+import com.flypiggyyoyoyo.im.offlinedatastoreservice.data.offlineMessage.OfflineMessageRequest;
+import com.flypiggyyoyoyo.im.offlinedatastoreservice.data.offlineMessage.OfflineMessageResponse;
 import com.flypiggyyoyoyo.im.offlinedatastoreservice.model.Message;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2025-03-27 21:26:43
 */
 public interface MessageService extends IService<Message> {
+    OfflineMessageResponse getOfflineMessage(OfflineMessageRequest request);
+
     void saveOfflineMessage(String message);
 }
