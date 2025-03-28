@@ -15,5 +15,6 @@
         <module>RealTimeCommunicationService</module>
         <module>MessageService</module>
         <module>OfflineDataStoreService</module>
+        <module>MomentService</module>
     </modules>
 </project>

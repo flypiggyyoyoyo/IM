@@ -85,3 +85,15 @@ spring:
           filters:
             - AddRequestHeader=X-Request-Source, InfiniteChat-GateWay
             - AddResponseHeader=X-Response-Source, InfiniteChat-GateWay
+
+        # 离线存储模块
+        - id: OfflineDataStore
+          uri: lb://OfflineDataStore
+          predicates:
+            - Path=/api/v1/offline/**
+
+        # 朋友圈模块
+        - id: MomentService
+          uri: lb://MomentService
+          predicates:
+            - Path=/api/v1/moment/**
